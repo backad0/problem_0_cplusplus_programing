@@ -1,11 +1,57 @@
 #include "Container.hpp"
+#include "WeightException.hpp"
+#include <exception>
 
 using namespace std;
 
 Container::Container(int length, int width, int height, double maxWeight) {
-    this->length = length;
-    this->width = width;
-    this->height = height;
-    this->maxWeight = maxWeight;
+    Container::length = length;
+    Container::width = width;
+    Container::height = height;
+    Container::maxWeight = maxWeight;
 }
 
+int Container::addBox(Box box) {
+    double cWeight = this->getSumOfWeights();
+    if ((cWeight+box.getWeight())<=Container::maxWeight){
+        Container::boxes.push_back(box);
+        return this->getSize()-1;
+    } else {
+        throw WeightException();
+    }
+
+}
+
+void Container::delBox(int stand) {
+    int count = 0;
+    for (auto i = Container::boxes.begin(); i!=Container::boxes.end(); i++){
+        if (count == stand){
+            Container::boxes.erase(i);
+        }
+        count++;
+    }
+}
+
+int Container::getSize() {
+    return Container::boxes.size();
+}
+
+double Container::getSumOfWeights() {
+    double sum = 0;
+    for (int i = 0; i < this->getSize(); i++){
+        sum += Container::boxes.at(i).getWeight();
+    }
+    return sum;
+}
+
+int Container::getSumOfValues() {
+    int sum = 0;
+    for (auto i = Container::boxes.begin(); i!=Container::boxes.end(); i++){
+        sum += i->getValue();
+    }
+    return sum;
+}
+
+Box Container::getBox(int stand) {
+    return Container::boxes.at(stand);
+}

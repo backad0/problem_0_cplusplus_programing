@@ -3,6 +3,7 @@
 
 using namespace std;
 
+Box::Box() = default;
 
 Box::Box(int length, int width, int height, int value, double weight) {
     Box::length = length;
@@ -12,7 +13,7 @@ Box::Box(int length, int width, int height, int value, double weight) {
     Box::weight = weight;
 }
 
-int  arrayValue(Box arr[], int size) {
+int arrayValue(Box arr[], int size) {
     int sumValue = 0;
     for (int i = 0; i < size; i++) {
         sumValue += arr[i].value;
@@ -74,8 +75,9 @@ bool equals(Box box1, Box box2) {
 }
 
 ostream &operator<<(ostream &os, Box &box) {
-    return os << "length: " << box.length << " width: " << box.width << " height: " << box.height << " weight: " << box.weight
-       << " value: " << box.value;
+    return os << "length: " << box.length << " width: " << box.width << " height: " << box.height << " weight: "
+              << box.weight
+              << " value: " << box.value;
 }
 
 istream &operator>>(istream &in, Box &box) {

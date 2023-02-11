@@ -7,6 +7,7 @@ private:
     int length, width, height, value;
     double weight;
 public:
+    Box();
     Box(int length, int width, int height, int value, double weight);
 
     friend int arrayValue(Box arr[], int size);
