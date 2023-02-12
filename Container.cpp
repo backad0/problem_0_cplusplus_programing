@@ -13,9 +13,9 @@ Container::Container(int length, int width, int height, double maxWeight) {
 
 int Container::addBox(Box box) {
     double cWeight = this->getSumOfWeights();
-    if ((cWeight+box.getWeight())<=Container::maxWeight){
+    if ((cWeight + box.getWeight()) <= Container::maxWeight) {
         Container::boxes.push_back(box);
-        return this->getSize()-1;
+        return this->getSize() - 1;
     } else {
         throw WeightException();
     }
@@ -24,8 +24,8 @@ int Container::addBox(Box box) {
 
 void Container::delBox(int stand) {
     int count = 0;
-    for (auto i = Container::boxes.begin(); i!=Container::boxes.end(); i++){
-        if (count == stand){
+    for (auto i = Container::boxes.begin(); i != Container::boxes.end(); i++) {
+        if (count == stand) {
             Container::boxes.erase(i);
         }
         count++;
@@ -38,7 +38,7 @@ int Container::getSize() {
 
 double Container::getSumOfWeights() {
     double sum = 0;
-    for (int i = 0; i < this->getSize(); i++){
+    for (int i = 0; i < this->getSize(); i++) {
         sum += Container::boxes.at(i).getWeight();
     }
     return sum;
@@ -46,7 +46,7 @@ double Container::getSumOfWeights() {
 
 int Container::getSumOfValues() {
     int sum = 0;
-    for (auto i = Container::boxes.begin(); i!=Container::boxes.end(); i++){
+    for (auto i = Container::boxes.begin(); i != Container::boxes.end(); i++) {
         sum += i->getValue();
     }
     return sum;
@@ -54,4 +54,17 @@ int Container::getSumOfValues() {
 
 Box Container::getBox(int stand) {
     return Container::boxes.at(stand);
+}
+
+Box& Container::operator[](int stand) {
+    return this->boxes.at(stand);
+}
+
+ostream &operator<<(ostream &os, Container &container) {
+    return os << "Main characteristics: length: " << container.length << ", width: " <<
+    container.width << ", height: " << container.height << ", maxWeight: " << container.maxWeight << ".";
+}
+
+istream &operator>>(istream &in, Container &container) {
+    return in >> container.length >> container.width >> container.height >> container.maxWeight;
 }
