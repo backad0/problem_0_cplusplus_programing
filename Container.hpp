@@ -3,32 +3,36 @@
 
 using namespace std;
 
-class Container {
-private:
-    vector<Box> boxes;
-    int length, width, height;
-    double maxWeight;
-public:
-    Container(int length, int width, int height, double maxWeight);
+namespace containerNS {
 
-    int addBox(Box box);
+    class Container {
+    private:
+        vector<Box> boxes;
+        int length, width, height;
+        double maxWeight;
+    public:
+        Container(int length, int width, int height, double maxWeight);
 
-    void delBox(int stand);
+        int addBox(Box box);
 
-    int getSize();
+        void delBox(int stand);
 
-    double getSumOfWeights();
+        int getSize();
 
-    int getSumOfValues();
+        double getSumOfWeights();
 
-    Box getBox(int stand);
+        int getSumOfValues();
 
-    Box& operator[](int stand);
+        Box getBox(int stand);
 
-    friend ostream &operator<<(ostream &os, Container &container);
+        Box &operator[](int stand);
 
-    friend istream &operator>>(istream &in, Container &container);
+        friend ostream &operator<<(ostream &os, Container &container);
+
+        friend istream &operator>>(istream &in, Container &container);
 
 
-};
+    };
+
+}
 

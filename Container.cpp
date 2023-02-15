@@ -3,6 +3,7 @@
 #include <exception>
 
 using namespace std;
+using namespace containerNS;
 
 Container::Container(int length, int width, int height, double maxWeight) {
     Container::length = length;
@@ -14,6 +15,12 @@ Container::Container(int length, int width, int height, double maxWeight) {
 int Container::addBox(Box box) {
     double cWeight = this->getSumOfWeights();
     if ((cWeight + box.getWeight()) <= Container::maxWeight) {
+        /*Box arr[Container::getSize()+1];
+        for (int i = 0; i<Container::getSize(); i++){
+            arr[i] = Container::boxes[i];
+        }
+        arr[Container::getSize()] = box;
+        if (ifCanBeFolded)*/
         Container::boxes.push_back(box);
         return this->getSize() - 1;
     } else {
@@ -23,13 +30,7 @@ int Container::addBox(Box box) {
 }
 
 void Container::delBox(int stand) {
-    int count = 0;
-    for (auto i = Container::boxes.begin(); i != Container::boxes.end(); i++) {
-        if (count == stand) {
-            Container::boxes.erase(i);
-        }
-        count++;
-    }
+    Container::boxes.erase(Container::boxes.begin()+stand);
 }
 
 int Container::getSize() {

@@ -2,6 +2,7 @@
 #include "Container.hpp"
 
 using namespace std;
+using namespace containerNS;
 
 int main() {
     Container container(1,1,1,10.0);
