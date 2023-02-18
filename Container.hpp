@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace containerNS {
+/*namespace containerNS {*/
 
     class Container {
     private:
@@ -23,6 +23,26 @@ namespace containerNS {
 
         int getSumOfValues();
 
+        const vector<Box> &getBoxes() const;
+
+        void setBoxes(const vector<Box> &boxes);
+
+        int getLength() const;
+
+        void setLength(int length);
+
+        int getWidth() const;
+
+        void setWidth(int width);
+
+        int getHeight() const;
+
+        void setHeight(int height);
+
+        double getMaxWeight() const;
+
+        void setMaxWeight(double maxWeight);
+
         Box getBox(int stand);
 
         Box &operator[](int stand);
@@ -34,5 +54,5 @@ namespace containerNS {
 
     };
 
-}
+/*}*/
 

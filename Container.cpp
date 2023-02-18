@@ -3,7 +3,7 @@
 #include <exception>
 
 using namespace std;
-using namespace containerNS;
+/*using namespace containerNS;*/
 
 Container::Container(int length, int width, int height, double maxWeight) {
     Container::length = length;
@@ -62,10 +62,55 @@ Box& Container::operator[](int stand) {
 }
 
 ostream &operator<<(ostream &os, Container &container) {
-    return os << "Main characteristics: length: " << container.length << ", width: " <<
-    container.width << ", height: " << container.height << ", maxWeight: " << container.maxWeight << ".";
+    return os << "Main characteristics: length: " << container.getLength() << ", width: " <<
+    container.getWidth() << ", height: " << container.getHeight() << ", maxWeight: " << container.getMaxWeight() << ".";
 }
 
 istream &operator>>(istream &in, Container &container) {
-    return in >> container.length >> container.width >> container.height >> container.maxWeight;
+    int l, w, h; double mW;
+    return in >> l >> w >> h >> mW;
+    container.setLength(l);
+    container.setWidth(w);
+    container.setHeight(h);
+    container.setMaxWeight(mW);
+}
+
+const vector<Box> &Container::getBoxes() const {
+    return boxes;
+}
+
+void Container::setBoxes(const vector<Box> &boxes) {
+    Container::boxes = boxes;
+}
+
+int Container::getLength() const {
+    return length;
+}
+
+void Container::setLength(int length) {
+    Container::length = length;
+}
+
+int Container::getWidth() const {
+    return width;
+}
+
+void Container::setWidth(int width) {
+    Container::width = width;
+}
+
+int Container::getHeight() const {
+    return height;
+}
+
+void Container::setHeight(int height) {
+    Container::height = height;
+}
+
+double Container::getMaxWeight() const {
+    return maxWeight;
+}
+
+void Container::setMaxWeight(double maxWeight) {
+    Container::maxWeight = maxWeight;
 }
